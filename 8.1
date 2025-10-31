@@ -1,0 +1,95 @@
+import React, { useState } from "react";
+
+const LoginForm = () => {
+  // Step 1: Create state variables for username, password, and error message
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  // Step 2: Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent page reload
+
+    if (!username || !password) {
+      setError("Both fields are required!");
+    } else {
+      setError("");
+      console.log("Username:", username);
+      console.log("Password:", password);
+      alert("Login successful! Check console for details.");
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      <h2>Login Form</h2>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <label style={styles.label}>Username:</label>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          style={styles.input}
+        />
+
+        <label style={styles.label}>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={styles.input}
+        />
+
+        {error && <p style={styles.error}>{error}</p>}
+
+        <button type="submit" style={styles.button}>
+          Login
+        </button>
+      </form>
+    </div>
+  );
+};
+
+// Inline CSS for simple styling
+const styles = {
+  container: {
+    textAlign: "center",
+    marginTop: "50px",
+    fontFamily: "Arial, sans-serif",
+  },
+  form: {
+    display: "inline-block",
+    textAlign: "left",
+    backgroundColor: "#f8f8f8",
+    padding: "20px",
+    borderRadius: "10px",
+    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+  },
+  label: {
+    display: "block",
+    marginBottom: "8px",
+  },
+  input: {
+    width: "100%",
+    padding: "8px",
+    marginBottom: "15px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  },
+  button: {
+    width: "100%",
+    padding: "10px",
+    backgroundColor: "#007bff",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  error: {
+    color: "red",
+    fontSize: "14px",
+    marginBottom: "10px",
+  },
+};
+
+export default LoginForm;
